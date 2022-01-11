@@ -7,5 +7,6 @@ export default async ({ getNamedAccounts, deployments }) => {
     args: ["HUH Nation Directive NFT","HNDNFT", "https://whitepaper.huh.social"],
     log: true
   })
+  console.log(deployer)
 }
 export const tags = ['ERC721PresetMinterPauserAutoId']

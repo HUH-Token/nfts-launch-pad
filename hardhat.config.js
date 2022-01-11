@@ -16,7 +16,7 @@ for (const f of fs.readdirSync(path.join(__dirname, 'hardhat'))) {
 const enableGasReport = !!process.env.ENABLE_GAS_REPORT
 const enableProduction = process.env.COMPILE_MODE === 'production'
 
-const { MNEMONIC, PKD, PK1, PK2, PK3, PK4, INFURA_KEY, TENDERLY_USERNAME, TENDERLY_PROJECT } = process.env
+const { MNEMONIC, PKD, PK1, PK2, PK3, PK4, INFURA_KEY, TENDERLY_USERNAME, TENDERLY_PROJECT, MORALIS_KEY } = process.env
 const DEFAULT_MNEMONIC = 'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat'
 
 const sharedNetworkConfig = {}
@@ -60,20 +60,57 @@ module.exports = {
   },
   networks: {
     ganache: {
+      ...sharedNetworkConfig,
       url: 'http://localhost:8545'
     },
-    hardhat: {
-      blockGasLimit: 10000000
+    mainnet: {
+      ...sharedNetworkConfig,
+      url: `https://mainnet.infura.io/v3/${INFURA_KEY}`,
+    },
+    bscmainnet:{
+      ...sharedNetworkConfig,
+      url: `https://speedy-nodes-nyc.moralis.io/${MORALIS_KEY}/bsc/mainnet`
+    },
+    bsctestnet:{
+      ...sharedNetworkConfig,
+      url: `https://speedy-nodes-nyc.moralis.io/${MORALIS_KEY}/bsc/testnet`
+    },    
+    xdai: {
+      ...sharedNetworkConfig,
+      url: "https://xdai.poanetwork.dev",
+    },
+    ewc: {
+      ...sharedNetworkConfig,
+      url: `https://rpc.energyweb.org`,
+    },
+    rinkeby: {
+      ...sharedNetworkConfig,
+      url: `https://rinkeby.infura.io/v3/${INFURA_KEY}`,
+    },
+    goerli: {
+      ...sharedNetworkConfig,
+      url: `https://goerli.infura.io/v3/${INFURA_KEY}`,
+    },
+    ropsten: {
+      ...sharedNetworkConfig,
+      url: `https://ropsten.infura.io/v3/${INFURA_KEY}`,
+    },
+    kovan: {
+      ...sharedNetworkConfig,
+      url: `https://kovan.infura.io/v3/${INFURA_KEY}`,
     },
     mumbai: {
       ...sharedNetworkConfig,
-      url: `https://polygon-mumbai.infura.io/v3/${INFURA_KEY}`
+      url: `https://polygon-mumbai.infura.io/v3/${INFURA_KEY}`,
     },
     polygon: {
-      chainID: 137,
       ...sharedNetworkConfig,
-      url: `https://polygon-mainnet.infura.io/v3/${INFURA_KEY}`
-    }
+      url: `https://polygon-mainnet.infura.io/v3/${INFURA_KEY}`,
+    },
+    volta: {
+      ...sharedNetworkConfig,
+      url: `https://volta-rpc.energyweb.org`,
+    },
   },
   namedAccounts: {
     deployer: 0,
